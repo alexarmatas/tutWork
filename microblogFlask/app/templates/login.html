@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+<!--forms from class LoginForm render themselves as html-->
+<!--The LoginForm class is not instantiated yet-->
+{% block content%}
+    <h1>Sign In</h1>
+    <!--form action attribute tells browser the URL for submitting info-->
+    <!--form method attribute specifies HTTP request method for submitting form-->
+    <!--form novalidate attribute is optional, allows to test server-side validation-->
+    <form action="" method="post" novalidate>
+        <!--let's fall following forms become hidden fields (data for serverside)-->
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}<br>
+            <!--create a for loop for errors because there could be multiple-->
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+             <!--create a for loop for errors because there could be multiple-->
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit() }}</p>
+        <p>New user? <a href="{{ url_for('register') }}">Click to Register!</a></p>
+        <p>
+            Forgot Your Password?
+            <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+        </p>
+    </form>
+{% endblock %}
