@@ -1,2 +1,2 @@
 # tutWork
-Project done with tutorials
+Projects done with tutorials
